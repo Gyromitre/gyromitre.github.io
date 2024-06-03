@@ -3,7 +3,10 @@
     color: #f03a17;
     cursor: pointer;
 }
-.dot .d-icon { user-select: none }
+.dot .d-icon {
+    user-select: none;
+    text-shadow: 1px 1px 1px black;
+}
 
 .dot .tooltip {
     /* visibility: visible; */
