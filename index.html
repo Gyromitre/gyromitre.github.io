@@ -133,8 +133,10 @@
                             slot.classList.add('more');
                         }
                     }
-                    dot.querySelector('.dot').style.left = dotdata.$pos.left + 'px';
-                    dot.querySelector('.dot').style.top = dotdata.$pos.top + 'px';
+                    let [offsetX, offsetY] = isMobile ? [-5, 0] : [0, 0];
+
+                    dot.querySelector('.dot').style.left = dotdata.$pos.left + offsetX + 'px';
+                    dot.querySelector('.dot').style.top = dotdata.$pos.top + offsetY + 'px';
     
                     dot.querySelector('.dot .d-icon').classList.add(dotdata.$type);
                 }
@@ -152,6 +154,5 @@
         string = string.replaceAll('[', '<strong>').replaceAll(']', '</strong>');
         return string;
     }
-
 </script>
 </html>
