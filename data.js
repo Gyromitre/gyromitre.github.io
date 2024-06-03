@@ -14,7 +14,7 @@ const cities = [
         title: `Cité de Vallaki`,
         sub: `Ville principale de Barovie<br>"Tout ira bien!" - Baron Vargas Vallakovich`,
         _content: [],
-        _npc: ['Rudolph Van Richten (Rictavio)', '[Martikov] (Urwin & Danika: Brom & Bray)', '[Vallakov] (Vargas & Lydia: Vitkor)', '[Wachters]<br>(Fiona & Nikolai{✝}: Stella, Karl & Nikolai)', 'Izek Stražni (capitaine)', 'Père Lucian Petrovich (Saint Andral)', 'Blinsky (fabricant de jouets)']
+        _npc: ['Rudolph Van Richten (Rictavio)', '[Martikov] (Urwin & Danika: Brom & Bray)', '[Vallakov] (Vargas & Lydia: Vitkor)', '[Wachters]<br>(Fiona & Nikolai{♱}: Stella, Karl & Nikolai)', 'Izek Stražni (capitaine)', 'Père Lucian Petrovich (Saint Andral)', 'Blinsky (fabricant de jouets)']
     },
     {
         icon: '📍',
@@ -50,7 +50,7 @@ const cities = [
         title: `Commune Fortifiée de Krezk`,
         sub: `Sous l'Abbaye de Sainte Markovie`,
         _content: ['Symbole Sacré de Ravenkind ✮'],
-        _npc: ['Le Vicaire', 'Vasilka (golem)', '[Krezkov]<br>(Dmitri & Anna: Alana{✝} & Ilya)', 'Corniauds']
+        _npc: ['Le Vicaire', 'Vasilka (golem)', '[Krezkov]<br>(Dmitri & Anna: Alana{♱} & Ilya)', 'Corniauds']
     }
 ]
 
@@ -62,7 +62,7 @@ const pois = [
         title: `Château de Ravenloft`,
         sub: `Fortresse noire,<br>Nommée en l'honneur<br>de Reine Ravenonia von Z.`,
         _content: [],
-        _npc: ['Strahd von Zarovich{✝}', 'Rahadin']
+        _npc: ['Strahd von Zarovich{♱}', 'Rahadin']
     },
     {
         icon: '📍',
@@ -124,7 +124,7 @@ const pois = [
         $pos: { left: 298, top: 207 },
         title: `Tour du Mage`,
         sub: `Golems et portrait vivant<br>Surplombent le lac Baratok`,
-        _content: ['Tome de Strahd ✮' , 'Van Richten{✝}'],
+        _content: ['Tome de Strahd ✮' , 'Van Richten{♱}'],
         _npc: ['Khazan (portrait)', `Ezmerelda d'Avenir`]
     },
     {
@@ -152,7 +152,7 @@ const pois = [
         title: `Caverne de Volkov`,
         sub: `Crocs, violence et cruauté`,
         _content: [],
-        _npc: ['Kiril (alpha)', 'Eilsen{✝}', 'Vieux Skennis', 'Zuleika (prêtresse)', 'Emil (prisonnier)']
+        _npc: ['Kiril (alpha)', 'Eilsen{♱}', 'Vieux Skennis', 'Zuleika (prêtresse)', 'Emil (prisonnier)']
     }
 ]
 

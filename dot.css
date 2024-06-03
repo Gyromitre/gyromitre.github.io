@@ -5,7 +5,7 @@
 }
 .dot .d-icon {
     user-select: none;
-    text-shadow: 1px 1px 1px black;
+    text-shadow: 1px 2px 1px black;
 }
 
 .dot .tooltip {
@@ -37,11 +37,11 @@
 .tooltip .pin-ctrl { visibility: hidden; }
 .dot.pinned .tooltip .pin-ctrl { visibility: visible; cursor: pointer; font-size: 11pt; }
 
-.tooltip p { margin: 2.5px 0; }
-.tooltip .d-title { font-weight: bold; text-wrap: nowrap; padding-right: 20px; border-bottom: 1px solid black; }
-.tooltip .d-sub { text-wrap: nowrap; font-style: italic; }
+.tooltip p { margin: 2.5px 0; text-wrap: nowrap }
+.tooltip .d-title { font-weight: bold; padding-right: 20px; border-bottom: 1px solid black; }
+.tooltip .d-sub { font-style: italic; }
 .tooltip .d-content, .tooltip .d-npc { font-weight: 700; }
-.tooltip li { list-style-position: inside; font-weight: 200; }
+.tooltip li { list-style-position: inside; font-weight: 400; }
 .tooltip li strong { font-weight: 700 }
 .tooltip li:nth-child(even) { color: #2d1619 }
 .tooltip sup { vertical-align: top; position: relative; top: -0.4em; }
