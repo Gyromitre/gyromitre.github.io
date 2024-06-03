@@ -63,7 +63,7 @@ const pois = [
         title: `Château de Ravenloft`,
         sub: `Fortresse noire,<br>Nommée en l'honneur<br>de Reine Ravenonia von Z.`,
         _content: [],
-        _npc: ['Strahd von Zarovich{♱}', 'Rahadin']
+        _npc: ['Strahd von Zarovich{♱}', 'Rahadin', 'Tatyana{♱}']
     },
     {
         icon: '📍',
