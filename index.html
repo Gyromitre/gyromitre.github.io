@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Interactive - Curse of Strahd</title>
+    <script src="./data.js"></script>
+    <link rel="stylesheet" href="dot.css">
+</head>
+<style>
+    html { background: black; font-family: Arial, Helvetica, sans-serif; color: white }
+    main { border: 2px solid #d9c7af; width: fit-content; }
+
+    #map {
+        background: no-repeat url("./map.png");
+        background-size: contain;
+        width: 1198px;
+        height: 762px;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    footer { margin-top: 5px }
+</style>
+<body>
+    <main>
+        <div id="map" onclick="getCursorPosition()"></div>
+    </main>
+    <footer>
+        <form action="" onchange="reloadDots()">
+            <label><input type="checkbox" name="cities" default> Villes</label>
+            <label><input type="checkbox" name="pois" default> Points-Repères</label>
+            <label><input type="checkbox" name="events"> Événements</label>
+            <label><input type="checkbox" name="naturals" default> Nature</label>
+        </form>
+    </footer>
+    <template id="tpl-dot">
+        <span class="dot">
+            <span class="d-icon" onclick="pinTooltip(this)"></span>
+            <span class="tooltip">
+                <span class="ctrl">
+                    <span class="pin-ctrl" onclick="pinTooltip(this)">🖈</span>
+                </span>
+                <p class="d-title"></p>
+                <p class="d-sub"></p>
+                <p class="d-content"></p>
+                <p class="d-npc"></p>
+            </span>
+        </span>
+    </template>
+</body>
+<script>
+    function getCursorPosition() {
+        if (event.ctrlKey) {
+            mapOffsetLeft = $('#map').getBoundingClientRect().width * .015;
+            mapOffsetTop = $('#map').getBoundingClientRect().height * .03;
+            pinLeft = event.clientX - mapOffsetLeft;
+            pinTop = event.clientY - mapOffsetTop;
+            console.log(`$pos: { left: ${Math.round(pinLeft)}, top: ${Math.round(pinTop)} },`);
+        }
+    }
+
+    function pinTooltip(element) {
+        const dot = element.closest('.dot');
+        if (!dot) {
+            console.error('Pas de point trouvé, erreur critique');
+        } else {
+            event.preventDefault();
+            event.stopPropagation();
+            dot.classList.toggle('pinned');
+        }
+    }
+
+    function toggleMore(element) {
+        console.log(element);
+        const block = element.closest('p');
+        block.classList.toggle('more');    
+    }
+
+    function reloadDots(init = false) {
+        if (init) {
+            $$('input[default]').forEach(i => i.checked = true);
+        }
+        
+        let dots = [];
+        Array.from($$('input')).map(input => {
+            if (input.checked) {
+                dots.push(g_data[input.name]);
+            }
+        });
+        loadDots(dots.flat());
+    }
+
+    function clearDots() {
+        $$('.dot').forEach(dot => {
+            dot.parentElement.removeChild(dot);
+        });
+    }
+
+    function loadDots(dots) {
+        clearDots();
+
+        if (dots) {
+            const template = $('template#tpl-dot'),
+                fragment = document.createDocumentFragment();
+    
+            dots.map(dotdata => {
+                const dot = document.importNode(template.content, true);
+                for (key in dotdata) {
+                    if (!key.includes('$') && !key.includes('_')) {
+                        let slot = dot.querySelector('.d-' + key);
+                        if (slot) {
+                            slot.innerHTML = markup(dotdata[key]);
+                        } else {
+                            console.warn('clef non reconnue', key);
+                        }
+                    } else if (key.includes('_') && dotdata[key].length) {
+                        let slot = dot.querySelector('.d-' + key.substr(1));
+                        slot.textContent = dictionary[key];
+
+                        slot.innerHTML += `<span class="more-btn" onclick="toggleMore(this)"></span>`;
+                        htmlList = dotdata[key].map(value => `<li>${markup(value)}</li>`).join('');
+                        slot.innerHTML += `<span class="more-content">${htmlList}</span>`;
+                        
+                        if (dotdata[key].length == 1) {
+                            slot.classList.add('more');
+                        }
+                    }
+                    dot.querySelector('.dot').style.left = dotdata.$pos.left + 'px';
+                    dot.querySelector('.dot').style.top = dotdata.$pos.top + 'px';
+    
+                    dot.querySelector('.dot .d-icon').classList.add(dotdata.$type);
+                }
+                fragment.appendChild(dot);
+                $('#map').appendChild(fragment);
+            });
+        } else {
+            console.error('DONNÉES INTROUVABLES! Confer data.js')
+        }
+    }
+    window.onload = () => reloadDots(true);
+
+    function markup(string) {
+        string = string.replaceAll('{', '<sup>').replaceAll('}', '</sup>');
+        string = string.replaceAll('[', '<strong>').replaceAll(']', '</strong>');
+        return string;
+    }
+
+</script>
+</html>

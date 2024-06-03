@@ -1,0 +1,57 @@
+.dot {
+    position: absolute;
+    color: #f03a17;
+    cursor: pointer;
+}
+.dot .d-icon { user-select: none }
+
+.dot .tooltip {
+    /* visibility: visible; */
+    visibility: hidden;
+    width: fit-content;
+    background-color: #ddcbb3;
+    color: #4f2927;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    border: 2px solid #000;
+    padding: 0 5px;
+    font-size: 9pt;
+    cursor: auto;
+    opacity: .95;
+    min-width: 80px;
+}
+.dot .tooltip:hover {
+    z-index: 2;
+}
+
+.dot:hover:not(:has(.pin-ctrl:hover)) .tooltip,
+.dot.pinned .tooltip { visibility: visible; }
+
+/* TOOLTIP general */
+.tooltip .ctrl { float: right; }
+.tooltip .pin-ctrl { visibility: hidden; }
+.dot.pinned .tooltip .pin-ctrl { visibility: visible; cursor: pointer; font-size: 11pt; }
+
+.tooltip p { margin: 2.5px 0; }
+.tooltip .d-title { font-weight: bold; text-wrap: nowrap; padding-right: 20px; border-bottom: 1px solid black; }
+.tooltip .d-sub { text-wrap: nowrap; font-style: italic; }
+.tooltip .d-content, .tooltip .d-npc { font-weight: 700; }
+.tooltip li { list-style-position: inside; font-weight: 200; }
+.tooltip li strong { font-weight: 700 }
+.tooltip li:nth-child(even) { color: #2d1619 }
+.tooltip sup { vertical-align: top; position: relative; top: -0.4em; }
+
+/* MORE CONTENT button */
+.tooltip .more-btn { font-family: 'Courier New', Courier, monospace; cursor: pointer; user-select: none; }
+.tooltip .more-btn::after { content: '[+]' }
+.tooltip .more-btn:hover {opacity: .8; background: rgba(0, 0, 0, .1); border-radius: 3px }
+.tooltip .more-content { display: none; }
+.tooltip .more .more-content { display: initial }
+.tooltip .more .more-btn::after { content: '[-]' }
+
+/* PIN COLORS */
+.d-icon.city { filter: hue-rotate(90deg); } /* red -> green */
+.d-icon.event { filter: hue-rotate(190deg); } /* red -> blue */
+.d-icon.poi { filter: hue-rotate(0deg); } /* red */
