@@ -23,10 +23,13 @@
     footer { margin-top: 7px; text-wrap: nowrap; white-space: nowrap; }
     label { 
         border: 1px solid;
-        background-color: #d9c7af;
+        background-color: #f0f0f0;
         color: black;
         border-radius: 5px;
         padding: 3px 4px 3px 0;
+    }
+    label.filter {
+        background-color: #d9c7af;
     }
 </style>
 <body>
@@ -35,12 +38,16 @@
     </main>
     <footer>
         <form action="" onchange="reloadDots()">
-            <label><input type="checkbox" name="cities" default> Villes</label>
-            <label><input type="checkbox" name="pois" default> Points-Repères</label>
-            <label><input type="checkbox" name="events"> Événements</label>
-            <label><input type="checkbox" name="naturals" default> Nature</label>
+            <label class="filter"><input type="checkbox" name="cities" default> Villes</label>
+            <label class="filter"><input type="checkbox" name="pois" default> Points-Repères</label>
+            <label class="filter"><input type="checkbox" name="events"> Événements</label>
+            <label class="filter"><input type="checkbox" name="naturals" default> Nature</label>
         </form>
     </footer>
+    <footer>
+        <label><input type="checkbox" id="compact" onclick="toggleCompactMode()"> Compact</label>
+    </footer>
+
     <template id="tpl-dot">
         <span class="dot">
             <span class="d-icon" onclick="pinTooltip(this)" onselect="pinTooltip(this)" oncontextmenu="pinTooltip(this)"></span>
@@ -58,14 +65,14 @@
 </body>
 <script>
     function getCursorPosition() {
-        if (event.ctrlKey) {
-            mapOffsetLeft = $('#map').getBoundingClientRect().width * .015;
-            mapOffsetTop = $('#map').getBoundingClientRect().height * .03;
-            pinLeft = event.clientX - mapOffsetLeft;
-            pinTop = event.clientY - mapOffsetTop;
-            console.log(`$pos: { left: ${Math.round(pinLeft)}, top: ${Math.round(pinTop)} },`);
-        }
+    if (event.ctrlKey) {
+        mapOffsetLeft = $('#map').getBoundingClientRect().width * .015;
+        mapOffsetTop = $('#map').getBoundingClientRect().height * .03;
+        pinLeft = event.clientX - mapOffsetLeft;
+        pinTop = event.clientY - mapOffsetTop;
+        console.log(`$pos: { left: ${Math.round(pinLeft)}, top: ${Math.round(pinTop)} },`);
     }
+}
 
     function pinTooltip(element) {
         const dot = element.closest('.dot');
@@ -79,7 +86,6 @@
     }
 
     function toggleMore(element) {
-        console.log(element);
         const block = element.closest('p');
         block.classList.toggle('more');    
     }
@@ -104,13 +110,25 @@
         });
     }
 
+    function toggleCompactMode() {
+        $('#map').classList.toggle('compact', $('#compact').checked);
+    }
+
+
+
+    function markup(string) {
+        string = string.replaceAll('{', '<sup>').replaceAll('}', '</sup>');
+        string = string.replaceAll('[', '<strong>').replaceAll(']', '</strong>');
+        return string;
+    }
+
     function loadDots(dots) {
         clearDots();
 
         if (dots) {
             const template = $('template#tpl-dot'),
                 fragment = document.createDocumentFragment();
-    
+
             dots.map(dotdata => {
                 const dot = document.importNode(template.content, true);
                 for (key in dotdata) {
@@ -137,7 +155,7 @@
                     let [offsetX, offsetY] = isMobile ? [-5, 0] : [0, 0];
                     dot.querySelector('.dot').style.left = dotdata.$pos.left + offsetX + 'px';
                     dot.querySelector('.dot').style.top = dotdata.$pos.top + offsetY + 'px';
-    
+
                     dot.querySelector('.dot .d-icon').classList.add(dotdata.$type);
                 }
                 fragment.appendChild(dot);
@@ -147,12 +165,10 @@
             console.error('DONNÉES INTROUVABLES! Confer data.js')
         }
     }
-    window.onload = () => reloadDots(true);
 
-    function markup(string) {
-        string = string.replaceAll('{', '<sup>').replaceAll('}', '</sup>');
-        string = string.replaceAll('[', '<strong>').replaceAll(']', '</strong>');
-        return string;
+    window.onload = () => {
+        toggleCompactMode();
+        reloadDots(true);
     }
 </script>
 </html>

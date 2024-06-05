@@ -24,7 +24,7 @@ const cities = [
         title: `Village de Barovie`,
         sub: `Au pied de Ravenloft`,
         _content: [],
-        _npc: ['Ismark Kolyanovich', 'Ireena Kolyana', 'Tatyana']
+        _npc: ['Ismark Kolyanovich', 'Ireena Kolyana', 'Père Donavich']
     },
     {
         icon: '📍',
@@ -152,12 +152,21 @@ const pois = [
         $pos: { left: 231, top: 217 },
         title: `Caverne de Volkov`,
         sub: `Crocs, violence et cruauté`,
-        _content: [],
+        _content: ['Diggy{♱}'],
         _npc: ['Kiril (alpha)', 'Eilsen{♱}', 'Vieux Skennis', 'Zuleika (prêtresse)', 'Emil (prisonnier)']
     }
 ]
 
 const events = [
+    {
+        icon: '⚔️',
+        $type: 'combat',
+        $pos: { left: 645, top: 230 },
+        title: `Rescousse de Rocheval`,
+        sub: `Assailli de loups curieusement motivés`,
+        _content:``,
+        _npc: ['Rocheval (géant de pierre, sculpteur)']
+    },
     {
         icon: '⚔️',
         $type: 'combat',
@@ -175,6 +184,24 @@ const events = [
         sub: `Géant de paille, de fer & d'effroi<br>Griffes d'acier, harpons & chaînes`,
         _content: [],
         _npc: ['Tarkus (revenant)']
+    },
+    {
+        icon: '⚔️',
+        $type: 'combat',
+        $pos: { left: 426, top: 301 },
+        title: `De mal en Kelpies`,
+        sub: `À cheval donné,<br>on ne regarde pas que les dents…`,
+        _content: [],
+        _npc: ['Strahd von Zarovich', 'Miroslav Voipatrovich (chasseur)']
+    },
+    {
+        icon: '⚔️',
+        $type: 'combat',
+        $pos: { left: 136, top: 164 },
+        title: `Crypte de Sainte Markovie`,
+        sub: `Courroux zélé d'un juge déchu`,
+        _content: ['Diggy{♱}'],
+        _npc: ['Le Vicaire', 'Corniauds']
     }
 ];
 

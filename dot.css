@@ -38,13 +38,19 @@
 .dot.pinned .tooltip .pin-ctrl { visibility: visible; cursor: pointer; font-size: 11pt; }
 
 .tooltip p { margin: 2.5px 0; text-wrap: nowrap; white-space: nowrap; }
-.tooltip .d-title { font-weight: bold; padding-right: 20px; border-bottom: 1px solid black; }
+.tooltip .d-title { font-weight: bold; padding-right: 20px; border-bottom: 1px solid black; cursor: pointer; }
 .tooltip .d-sub { font-style: italic; }
 .tooltip .d-content, .tooltip .d-npc { font-weight: 700; }
 .tooltip li { list-style-position: inside; font-weight: 400; }
 .tooltip li strong { font-weight: 700 }
 .tooltip li:nth-child(even) { color: #2d1619 }
 .tooltip sup { vertical-align: top; position: relative; top: -0.4em; }
+
+/* COMPACT mode */
+.compact .tooltip p,
+.compact .tooltip li { display: none; }
+.compact .tooltip .d-title { display: block; border: 0; }
+.compact .tooltip { min-width: fit-content; }
 
 /* MORE CONTENT button */
 .tooltip .more-btn { font-family: 'Courier New', Courier, monospace; cursor: pointer; user-select: none; }
