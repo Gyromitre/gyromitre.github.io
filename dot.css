@@ -33,12 +33,21 @@
 .dot.pinned .tooltip { visibility: visible; }
 
 /* TOOLTIP general */
-.tooltip .ctrl { float: right; }
-.tooltip .pin-ctrl { visibility: hidden; }
-.dot.pinned .tooltip .pin-ctrl { visibility: visible; cursor: pointer; font-size: 11pt; }
+.tooltip .ctrl { float: right; user-select: none; }
+.tooltip .ctrl span:hover { opacity: .6; cursor: pointer; }
+.tooltip .compact-ctrl {
+    display: inline-block;
+    position: relative;
+    vertical-align: text-top;
+    position: relative;
+    margin-right: -2px;
+    font-size: 7pt;
+}
+.tooltip .pin-ctrl { visibility: hidden; font-size: 11pt; }
+.dot.pinned .tooltip .pin-ctrl { visibility: visible; }
 
 .tooltip p { margin: 2.5px 0; text-wrap: nowrap; white-space: nowrap; }
-.tooltip .d-title { font-weight: bold; padding-right: 20px; border-bottom: 1px solid black; cursor: pointer; }
+.tooltip .d-title { font-weight: bold; padding-right: 24px; border-bottom: 1px solid black; }
 .tooltip .d-sub { font-style: italic; }
 .tooltip .d-content, .tooltip .d-npc { font-weight: 700; }
 .tooltip li { list-style-position: inside; font-weight: 400; }
@@ -47,10 +56,11 @@
 .tooltip sup { vertical-align: top; position: relative; top: -0.4em; }
 
 /* COMPACT mode */
+.compact .compact-ctrl { transform: scale(1, -1); }
+.compact .tooltip { min-width: fit-content; opacity: .9 }
 .compact .tooltip p,
 .compact .tooltip li { display: none; }
 .compact .tooltip .d-title { display: block; border: 0; }
-.compact .tooltip { min-width: fit-content; }
 
 /* MORE CONTENT button */
 .tooltip .more-btn { font-family: 'Courier New', Courier, monospace; cursor: pointer; user-select: none; }

@@ -37,7 +37,7 @@
         <div id="map" onclick="getCursorPosition()"></div>
     </main>
     <footer>
-        <form action="" onchange="reloadDots()">
+        <form onchange="reloadDots()">
             <label class="filter"><input type="checkbox" name="cities" default> Villes</label>
             <label class="filter"><input type="checkbox" name="pois" default> Points-Repères</label>
             <label class="filter"><input type="checkbox" name="events"> Événements</label>
@@ -53,6 +53,7 @@
             <span class="d-icon" onclick="pinTooltip(this)" onselect="pinTooltip(this)" oncontextmenu="pinTooltip(this)"></span>
             <span class="tooltip">
                 <span class="ctrl">
+                    <span class="compact-ctrl" onclick="toggleCompactPin(this)">▲</span>
                     <span class="pin-ctrl" onclick="pinTooltip(this)">×</span>
                 </span>
                 <p class="d-title"></p>

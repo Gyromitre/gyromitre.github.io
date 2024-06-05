@@ -26,7 +26,7 @@ function toggleMore(element) {
 
 function reloadDots(init = false) {
     if (init) {
-        $$('input[default]').forEach(i => i.checked = true);
+        $$('.filter input').forEach(i => i.checked = i.hasAttribute('default'));
     }
     
     let dots = [];
@@ -45,7 +45,12 @@ function clearDots() {
 }
 
 function toggleCompactMode() {
-    $('#map').classList.toggle('compact', $('#compact').checked);
+    let bool = $('#compact').checked;
+    $$('.dot').forEach(dot => dot.classList.toggle('compact', bool));
+}
+
+function toggleCompactPin(element) {
+    element.closest('.dot').classList.toggle('compact');
 }
 
 function markup(string) {
@@ -84,9 +89,14 @@ function loadDots(dots) {
                     }
                 }
 
+                let dotElement = dot.querySelector('.dot');
                 let [offsetX, offsetY] = isMobile ? [-5, 0] : [0, 0];
-                dot.querySelector('.dot').style.left = dotdata.$pos.left + offsetX + 'px';
-                dot.querySelector('.dot').style.top = dotdata.$pos.top + offsetY + 'px';
+                dotElement.style.left = dotdata.$pos.left + offsetX + 'px';
+                dotElement.style.top = dotdata.$pos.top + offsetY + 'px';
+                
+                if ($('#compact').checked) {
+                    dotElement.classList.add('compact');
+                }
 
                 dot.querySelector('.dot .d-icon').classList.add(dotdata.$type);
             }
